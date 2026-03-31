@@ -56,7 +56,7 @@ export default function Footer({ whatsappNumber, genericMessage, phoneDisplay, e
 
         <div className="mt-12 pt-8 border-t border-border text-center text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Digital Solutions. Todos os direitos reservados.</p>
-          <p className="mt-1">CNPJ: 12.345.678/0001-99 | Política de Privacidade | Termos de Uso</p>
+          <p className="mt-1">CNPJ: {cnpj || "12.345.678/0001-99"} | Política de Privacidade | Termos de Uso</p>
         </div>
       </div>
     </footer>

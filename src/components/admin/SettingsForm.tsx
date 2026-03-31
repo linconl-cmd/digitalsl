@@ -31,6 +31,22 @@ const SETTING_LABELS: Record<string, { label: string; description: string; multi
     description: "Texto abaixo do título principal.",
     multiline: true,
   },
+  footer_phone_display: {
+    label: "Telefone exibido no Rodapé",
+    description: "Número formatado que aparece no rodapé, ex: (11) 99999-9999",
+  },
+  footer_email: {
+    label: "E-mail de Contato (Rodapé)",
+    description: "E-mail exibido na seção de contato do rodapé.",
+  },
+  footer_location: {
+    label: "Localização (Rodapé)",
+    description: "Cidade/estado exibido no rodapé.",
+  },
+  footer_cnpj: {
+    label: "CNPJ (Rodapé)",
+    description: "CNPJ exibido no rodapé do site.",
+  },
 };
 
 const SETTING_ORDER = [
@@ -39,6 +55,10 @@ const SETTING_ORDER = [
   "whatsapp_generic_message",
   "hero_title",
   "hero_subtitle",
+  "footer_phone_display",
+  "footer_email",
+  "footer_location",
+  "footer_cnpj",
 ];
 
 export default function SettingsForm({ onClose }: { onClose: () => void }) {
