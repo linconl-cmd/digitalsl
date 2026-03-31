@@ -277,6 +277,33 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
             </Select>
           </div>
           <div className="flex items-center gap-3">
+            <Switch checked={form.has_periods} onCheckedChange={(v) => setForm({ ...form, has_periods: v })} />
+            <Label>Opções de 12/24 meses</Label>
+          </div>
+          {form.has_periods && (
+            <div className="space-y-4 rounded-xl border border-border p-4">
+              <p className="text-sm font-semibold text-foreground">Preços por Período</p>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label>Original 12m (R$)</Label>
+                  <Input type="number" step="0.01" value={form.original_price_12m} onChange={(e) => setForm({ ...form, original_price_12m: e.target.value })} className="mt-1" placeholder="Opcional" />
+                </div>
+                <div>
+                  <Label>Desconto 12m (R$)</Label>
+                  <Input type="number" step="0.01" value={form.price_12m} onChange={(e) => setForm({ ...form, price_12m: e.target.value })} className="mt-1" required />
+                </div>
+                <div>
+                  <Label>Original 24m (R$)</Label>
+                  <Input type="number" step="0.01" value={form.original_price_24m} onChange={(e) => setForm({ ...form, original_price_24m: e.target.value })} className="mt-1" placeholder="Opcional" />
+                </div>
+                <div>
+                  <Label>Desconto 24m (R$)</Label>
+                  <Input type="number" step="0.01" value={form.price_24m} onChange={(e) => setForm({ ...form, price_24m: e.target.value })} className="mt-1" required />
+                </div>
+              </div>
+            </div>
+          )}
+          <div className="flex items-center gap-3">
             <Switch checked={form.active} onCheckedChange={(v) => setForm({ ...form, active: v })} />
             <Label>Produto ativo</Label>
           </div>
