@@ -261,6 +261,7 @@ function SortableProductRow({
       </Button>
     </div>
   );
+}
 
 function ProductForm({ product, onClose }: { product: Product | null; onClose: () => void }) {
   const queryClient = useQueryClient();
