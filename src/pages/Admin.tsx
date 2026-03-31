@@ -211,6 +211,11 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
       price: parseFloat(form.price),
       icon: form.icon,
       active: form.active,
+      has_periods: form.has_periods,
+      price_12m: form.price_12m ? parseFloat(form.price_12m) : null,
+      original_price_12m: form.original_price_12m ? parseFloat(form.original_price_12m) : null,
+      price_24m: form.price_24m ? parseFloat(form.price_24m) : null,
+      original_price_24m: form.original_price_24m ? parseFloat(form.original_price_24m) : null,
     };
 
     const { error } = product
