@@ -30,15 +30,15 @@ export default function Footer({ whatsappNumber, genericMessage, phoneDisplay, e
             <div className="space-y-3 text-sm text-muted-foreground">
               <a href={generateGenericWhatsAppLink(whatsappNumber, genericMessage)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
                 <MessageCircle className="h-4 w-4 text-primary" />
-                (11) 99999-9999
+                {phoneDisplay || "(11) 99999-9999"}
               </a>
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary" />
-                contato@digitalsolutions.com.br
+                {email || "contato@digitalsolutions.com.br"}
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                São Paulo, SP
+                {location || "São Paulo, SP"}
               </div>
             </div>
           </div>
