@@ -25,7 +25,7 @@ export default function ProductCard({ product, whatsappNumber, productMessage }:
     : product.original_price;
 
   return (
-    <div className="group relative rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-[var(--shadow-glow)]">
+    <div className="group relative rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-[var(--shadow-glow)] flex flex-col h-full">
       <div className="mb-4 inline-flex rounded-xl p-3" style={{ background: "var(--gradient-primary)" }}>
         <Icon className="h-6 w-6 text-primary-foreground" />
       </div>
