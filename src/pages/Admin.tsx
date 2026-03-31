@@ -9,9 +9,26 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { iconMap, iconOptions } from "@/lib/icons";
-import { Pencil, Trash2, Plus, LogOut, ArrowLeft, Loader2, Settings } from "lucide-react";
+import { Pencil, Trash2, Plus, LogOut, ArrowLeft, Loader2, Settings, GripVertical } from "lucide-react";
 import SettingsForm from "@/components/admin/SettingsForm";
 import { toast } from "sonner";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 export default function Admin() {
   const [authed, setAuthed] = useState(false);
