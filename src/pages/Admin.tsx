@@ -190,6 +190,7 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
   const [form, setForm] = useState({
     name: product?.name || "",
     description: product?.description || "",
+    original_price: product?.original_price?.toString() || "",
     price: product?.price?.toString() || "",
     icon: product?.icon || "shield",
     active: product?.active ?? true,
@@ -201,6 +202,7 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
     const data = {
       name: form.name,
       description: form.description,
+      original_price: form.original_price ? parseFloat(form.original_price) : null,
       price: parseFloat(form.price),
       icon: form.icon,
       active: form.active,
@@ -237,7 +239,11 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
             <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} required className="mt-1" placeholder="Benefício 1|Benefício 2|Benefício 3" />
           </div>
           <div>
-            <Label>Preço (R$)</Label>
+            <Label>Preço Original (R$) — riscado</Label>
+            <Input type="number" step="0.01" value={form.original_price} onChange={(e) => setForm({ ...form, original_price: e.target.value })} className="mt-1" placeholder="Opcional" />
+          </div>
+          <div>
+            <Label>Preço com Desconto (R$)</Label>
             <Input type="number" step="0.01" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} required className="mt-1" />
           </div>
           <div>

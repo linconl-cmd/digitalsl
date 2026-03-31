@@ -33,6 +33,11 @@ export default function ProductCard({ product, whatsappNumber, productMessage }:
 
       <div className="mb-4">
         <span className="text-sm text-muted-foreground">A partir de</span>
+        {product.original_price && product.original_price > product.price ? (
+          <p className="text-lg text-muted-foreground line-through">
+            R$ {product.original_price.toFixed(2).replace(".", ",")}
+          </p>
+        ) : null}
         <p className="text-3xl font-black gradient-text">
           R$ {product.price.toFixed(2).replace(".", ",")}
         </p>

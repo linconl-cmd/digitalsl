@@ -22,6 +22,7 @@ export type Database = {
           icon: string
           id: string
           name: string
+          original_price: number | null
           price: number
           updated_at: string
         }
@@ -32,6 +33,7 @@ export type Database = {
           icon?: string
           id?: string
           name: string
+          original_price?: number | null
           price: number
           updated_at?: string
         }
@@ -42,6 +44,7 @@ export type Database = {
           icon?: string
           id?: string
           name?: string
+          original_price?: number | null
           price?: number
           updated_at?: string
         }
