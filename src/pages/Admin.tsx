@@ -190,6 +190,7 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
   const [form, setForm] = useState({
     name: product?.name || "",
     description: product?.description || "",
+    original_price: product?.original_price?.toString() || "",
     price: product?.price?.toString() || "",
     icon: product?.icon || "shield",
     active: product?.active ?? true,
