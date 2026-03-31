@@ -104,6 +104,10 @@ function AdminDashboard() {
     else queryClient.invalidateQueries({ queryKey: ["products"] });
   };
 
+  if (showSettings) {
+    return <SettingsForm onClose={() => setShowSettings(false)} />;
+  }
+
   if (editing || creating) {
     return (
       <ProductForm
