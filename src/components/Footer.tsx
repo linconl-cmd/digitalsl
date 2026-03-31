@@ -4,9 +4,13 @@ import { generateGenericWhatsAppLink } from "@/lib/whatsapp";
 interface FooterProps {
   whatsappNumber: string;
   genericMessage: string;
+  phoneDisplay?: string;
+  email?: string;
+  location?: string;
+  cnpj?: string;
 }
 
-export default function Footer({ whatsappNumber, genericMessage }: FooterProps) {
+export default function Footer({ whatsappNumber, genericMessage, phoneDisplay, email, location, cnpj }: FooterProps) {
   return (
     <footer id="contato" className="border-t border-border bg-muted/20 py-16">
       <div className="container mx-auto px-4">
@@ -26,15 +30,15 @@ export default function Footer({ whatsappNumber, genericMessage }: FooterProps) 
             <div className="space-y-3 text-sm text-muted-foreground">
               <a href={generateGenericWhatsAppLink(whatsappNumber, genericMessage)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
                 <MessageCircle className="h-4 w-4 text-primary" />
-                (11) 99999-9999
+                {phoneDisplay || "(11) 99999-9999"}
               </a>
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary" />
-                contato@digitalsolutions.com.br
+                {email || "contato@digitalsolutions.com.br"}
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                São Paulo, SP
+                {location || "São Paulo, SP"}
               </div>
             </div>
           </div>
@@ -52,7 +56,7 @@ export default function Footer({ whatsappNumber, genericMessage }: FooterProps) 
 
         <div className="mt-12 pt-8 border-t border-border text-center text-xs text-muted-foreground">
           <p>© {new Date().getFullYear()} Digital Solutions. Todos os direitos reservados.</p>
-          <p className="mt-1">CNPJ: 12.345.678/0001-99 | Política de Privacidade | Termos de Uso</p>
+          <p className="mt-1">CNPJ: {cnpj || "12.345.678/0001-99"} | Política de Privacidade | Termos de Uso</p>
         </div>
       </div>
     </footer>

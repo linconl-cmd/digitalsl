@@ -13,6 +13,10 @@ const Index = () => {
   const productMessage = settings?.whatsapp_product_message || "Olá Digital Solutions, gostaria de adquirir o certificado: {product_name} - Valor: R$ {price}";
   const heroTitle = settings?.hero_title;
   const heroSubtitle = settings?.hero_subtitle;
+  const phoneDisplay = settings?.footer_phone_display;
+  const footerEmail = settings?.footer_email;
+  const footerLocation = settings?.footer_location;
+  const footerCnpj = settings?.footer_cnpj;
 
   return (
     <div className="min-h-screen bg-background">
@@ -21,7 +25,7 @@ const Index = () => {
       <ProductsSection whatsappNumber={whatsappNumber} productMessage={productMessage} />
       <HowItWorksSection />
       <TestimonialsSection />
-      <Footer whatsappNumber={whatsappNumber} genericMessage={genericMessage} />
+      <Footer whatsappNumber={whatsappNumber} genericMessage={genericMessage} phoneDisplay={phoneDisplay} email={footerEmail} location={footerLocation} cnpj={footerCnpj} />
     </div>
   );
 };
