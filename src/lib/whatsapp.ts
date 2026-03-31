@@ -1,15 +1,16 @@
-const WHATSAPP_NUMBER = "5511999999999"; // Replace with actual number
-
-export function generateWhatsAppLink(productName: string, price: number): string {
-  const message = encodeURIComponent(
-    `Olá Digital Solutions, gostaria de adquirir o certificado: ${productName} - Valor: R$ ${price.toFixed(2).replace('.', ',')}`
-  );
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+export function generateWhatsAppLink(
+  number: string,
+  messageTemplate: string,
+  productName: string,
+  price: number
+): string {
+  const formattedPrice = price.toFixed(2).replace(".", ",");
+  const message = messageTemplate
+    .replace("{product_name}", productName)
+    .replace("{price}", formattedPrice);
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
-export function generateGenericWhatsAppLink(): string {
-  const message = encodeURIComponent(
-    "Olá Digital Solutions, gostaria de mais informações sobre os certificados digitais."
-  );
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+export function generateGenericWhatsAppLink(number: string, message: string): string {
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
