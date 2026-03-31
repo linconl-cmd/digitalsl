@@ -1,7 +1,12 @@
 import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { generateGenericWhatsAppLink } from "@/lib/whatsapp";
 
-export default function Footer() {
+interface FooterProps {
+  whatsappNumber: string;
+  genericMessage: string;
+}
+
+export default function Footer({ whatsappNumber, genericMessage }: FooterProps) {
   return (
     <footer id="contato" className="border-t border-border bg-muted/20 py-16">
       <div className="container mx-auto px-4">
@@ -19,7 +24,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-foreground mb-4">Contato</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <a href={generateGenericWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
+              <a href={generateGenericWhatsAppLink(whatsappNumber, genericMessage)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-foreground transition-colors">
                 <MessageCircle className="h-4 w-4 text-primary" />
                 (11) 99999-9999
               </a>
