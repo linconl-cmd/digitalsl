@@ -4,7 +4,13 @@ import { iconMap } from "@/lib/icons";
 import { generateWhatsAppLink } from "@/lib/whatsapp";
 import type { Product } from "@/hooks/useProducts";
 
-export default function ProductCard({ product }: { product: Product }) {
+interface ProductCardProps {
+  product: Product;
+  whatsappNumber: string;
+  productMessage: string;
+}
+
+export default function ProductCard({ product, whatsappNumber, productMessage }: ProductCardProps) {
   const Icon = iconMap[product.icon] || iconMap.shield;
   const benefits = product.description.split("|");
 
@@ -32,7 +38,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </p>
       </div>
 
-      <a href={generateWhatsAppLink(product.name, product.price)} target="_blank" rel="noopener noreferrer">
+      <a href={generateWhatsAppLink(whatsappNumber, productMessage, product.name, product.price)} target="_blank" rel="noopener noreferrer">
         <Button className="w-full gap-2 bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] text-primary-foreground font-semibold">
           <MessageCircle className="h-4 w-4" />
           Comprar via WhatsApp

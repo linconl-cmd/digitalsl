@@ -9,7 +9,8 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { iconMap, iconOptions } from "@/lib/icons";
-import { Pencil, Trash2, Plus, LogOut, ArrowLeft, Loader2 } from "lucide-react";
+import { Pencil, Trash2, Plus, LogOut, ArrowLeft, Loader2, Settings } from "lucide-react";
+import SettingsForm from "@/components/admin/SettingsForm";
 import { toast } from "sonner";
 
 export default function Admin() {
@@ -81,6 +82,7 @@ function AdminDashboard() {
   const queryClient = useQueryClient();
   const [editing, setEditing] = useState<Product | null>(null);
   const [creating, setCreating] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -101,6 +103,10 @@ function AdminDashboard() {
     if (error) toast.error("Erro ao atualizar status");
     else queryClient.invalidateQueries({ queryKey: ["products"] });
   };
+
+  if (showSettings) {
+    return <SettingsForm onClose={() => setShowSettings(false)} />;
+  }
 
   if (editing || creating) {
     return (
@@ -134,9 +140,14 @@ function AdminDashboard() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold text-foreground">Gerenciar Produtos</h1>
-          <Button onClick={() => setCreating(true)} className="gap-2">
-            <Plus className="h-4 w-4" /> Novo Produto
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button variant="outline" onClick={() => setShowSettings(true)} className="gap-2">
+              <Settings className="h-4 w-4" /> Configurações
+            </Button>
+            <Button onClick={() => setCreating(true)} className="gap-2">
+              <Plus className="h-4 w-4" /> Novo Produto
+            </Button>
+          </div>
         </div>
 
         {isLoading ? (

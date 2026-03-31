@@ -10,8 +10,14 @@ const navItems = [
   { label: "Contato", href: "#contato" },
 ];
 
-export default function Header() {
+interface HeaderProps {
+  whatsappNumber: string;
+  genericMessage: string;
+}
+
+export default function Header({ whatsappNumber, genericMessage }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const link = generateGenericWhatsAppLink(whatsappNumber, genericMessage);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
@@ -23,21 +29,16 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
+            <a key={item.href} href={item.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
               {item.label}
             </a>
           ))}
         </nav>
 
         <div className="hidden md:block">
-          <a href={generateGenericWhatsAppLink()} target="_blank" rel="noopener noreferrer">
+          <a href={link} target="_blank" rel="noopener noreferrer">
             <Button className="bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] text-primary-foreground gap-2">
-              <MessageCircle className="h-4 w-4" />
-              Fale Conosco
+              <MessageCircle className="h-4 w-4" /> Fale Conosco
             </Button>
           </a>
         </div>
@@ -50,19 +51,13 @@ export default function Header() {
       {menuOpen && (
         <div className="md:hidden glass border-t border-border px-4 pb-4">
           {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="block py-3 text-sm font-medium text-muted-foreground hover:text-foreground"
-              onClick={() => setMenuOpen(false)}
-            >
+            <a key={item.href} href={item.href} className="block py-3 text-sm font-medium text-muted-foreground hover:text-foreground" onClick={() => setMenuOpen(false)}>
               {item.label}
             </a>
           ))}
-          <a href={generateGenericWhatsAppLink()} target="_blank" rel="noopener noreferrer">
+          <a href={link} target="_blank" rel="noopener noreferrer">
             <Button className="w-full mt-2 bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] text-primary-foreground gap-2">
-              <MessageCircle className="h-4 w-4" />
-              Fale Conosco
+              <MessageCircle className="h-4 w-4" /> Fale Conosco
             </Button>
           </a>
         </div>

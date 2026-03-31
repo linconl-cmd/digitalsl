@@ -1,9 +1,13 @@
 import { ShieldCheck, ArrowDown } from "lucide-react";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  title?: string;
+  subtitle?: string;
+}
+
+export default function HeroSection({ title, subtitle }: HeroSectionProps) {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background glow effects */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/10 blur-[120px]" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-secondary/10 blur-[120px]" />
 
@@ -14,15 +18,15 @@ export default function HeroSection() {
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black leading-tight mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-          Emita seu{" "}
-          <span className="gradient-text">Certificado Digital</span>
-          <br />
-          de forma Rápida e Segura
+          {title ? (
+            <span dangerouslySetInnerHTML={{ __html: title.replace(/(Certificado Digital)/i, '<span class="gradient-text">$1</span>') }} />
+          ) : (
+            <>Emita seu <span className="gradient-text">Certificado Digital</span><br />de forma Rápida e Segura</>
+          )}
         </h1>
 
         <p className="max-w-2xl mx-auto text-lg text-muted-foreground mb-10 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-          A Digital Solutions simplifica a emissão do seu certificado digital.
-          Atendimento personalizado, preços competitivos e suporte completo do início ao fim.
+          {subtitle || "A Digital Solutions simplifica a emissão do seu certificado digital. Atendimento personalizado, preços competitivos e suporte completo do início ao fim."}
         </p>
 
         <a
