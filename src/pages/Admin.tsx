@@ -9,9 +9,26 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { iconMap, iconOptions } from "@/lib/icons";
-import { Pencil, Trash2, Plus, LogOut, ArrowLeft, Loader2, Settings } from "lucide-react";
+import { Pencil, Trash2, Plus, LogOut, ArrowLeft, Loader2, Settings, GripVertical } from "lucide-react";
 import SettingsForm from "@/components/admin/SettingsForm";
 import { toast } from "sonner";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  type DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 export default function Admin() {
   const [authed, setAuthed] = useState(false);
@@ -104,6 +121,34 @@ function AdminDashboard() {
     else queryClient.invalidateQueries({ queryKey: ["products"] });
   };
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  const handleDragEnd = async (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id || !products) return;
+
+    const oldIndex = products.findIndex((p) => p.id === active.id);
+    const newIndex = products.findIndex((p) => p.id === over.id);
+    const reordered = arrayMove(products, oldIndex, newIndex);
+
+    // Optimistic update
+    queryClient.setQueryData(["products", false], reordered);
+
+    // Persist new order
+    const updates = reordered.map((p, i) =>
+      supabase.from("products").update({ sort_order: i }).eq("id", p.id)
+    );
+    const results = await Promise.all(updates);
+    const hasError = results.some((r) => r.error);
+    if (hasError) {
+      toast.error("Erro ao reordenar");
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    }
+  };
+
   if (showSettings) {
     return <SettingsForm onClose={() => setShowSettings(false)} />;
   }
@@ -155,31 +200,65 @@ function AdminDashboard() {
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
         ) : (
-          <div className="space-y-3">
-            {products?.map((product) => {
-              const Icon = iconMap[product.icon] || iconMap.shield;
-              return (
-                <div key={product.id} className="flex items-center gap-4 rounded-xl border border-border bg-card p-4">
-                  <div className="rounded-lg p-2" style={{ background: "var(--gradient-primary)" }}>
-                    <Icon className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-foreground truncate">{product.name}</p>
-                    <p className="text-sm text-muted-foreground">R$ {product.price.toFixed(2).replace(".", ",")}</p>
-                  </div>
-                  <Switch checked={product.active} onCheckedChange={() => handleToggleActive(product)} />
-                  <Button variant="ghost" size="icon" onClick={() => setEditing(product)}>
-                    <Pencil className="h-4 w-4" />
-                  </Button>
-                  <Button variant="ghost" size="icon" onClick={() => handleDelete(product.id)} className="text-destructive">
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              );
-            })}
-          </div>
+          <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+            <SortableContext items={products?.map((p) => p.id) || []} strategy={verticalListSortingStrategy}>
+              <div className="space-y-3">
+                {products?.map((product) => (
+                  <SortableProductRow
+                    key={product.id}
+                    product={product}
+                    onEdit={() => setEditing(product)}
+                    onDelete={() => handleDelete(product.id)}
+                    onToggleActive={() => handleToggleActive(product)}
+                  />
+                ))}
+              </div>
+            </SortableContext>
+          </DndContext>
         )}
       </div>
+    </div>
+  );
+}
+
+function SortableProductRow({
+  product,
+  onEdit,
+  onDelete,
+  onToggleActive,
+}: {
+  product: Product;
+  onEdit: () => void;
+  onDelete: () => void;
+  onToggleActive: () => void;
+}) {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: product.id });
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+  const Icon = iconMap[product.icon] || iconMap.shield;
+
+  return (
+    <div ref={setNodeRef} style={style} className="flex items-center gap-4 rounded-xl border border-border bg-card p-4">
+      <button {...attributes} {...listeners} className="cursor-grab text-muted-foreground hover:text-foreground touch-none">
+        <GripVertical className="h-5 w-5" />
+      </button>
+      <div className="rounded-lg p-2" style={{ background: "var(--gradient-primary)" }}>
+        <Icon className="h-5 w-5 text-primary-foreground" />
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="font-semibold text-foreground truncate">{product.name}</p>
+        <p className="text-sm text-muted-foreground">R$ {product.price.toFixed(2).replace(".", ",")}</p>
+      </div>
+      <Switch checked={product.active} onCheckedChange={onToggleActive} />
+      <Button variant="ghost" size="icon" onClick={onEdit}>
+        <Pencil className="h-4 w-4" />
+      </Button>
+      <Button variant="ghost" size="icon" onClick={onDelete} className="text-destructive">
+        <Trash2 className="h-4 w-4" />
+      </Button>
     </div>
   );
 }

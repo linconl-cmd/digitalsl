@@ -29,6 +29,7 @@ export type Database = {
           price: number
           price_12m: number | null
           price_24m: number | null
+          sort_order: number
           updated_at: string
         }
         Insert: {
@@ -45,6 +46,7 @@ export type Database = {
           price: number
           price_12m?: number | null
           price_24m?: number | null
+          sort_order?: number
           updated_at?: string
         }
         Update: {
@@ -61,6 +63,7 @@ export type Database = {
           price?: number
           price_12m?: number | null
           price_24m?: number | null
+          sort_order?: number
           updated_at?: string
         }
         Relationships: []
