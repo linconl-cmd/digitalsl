@@ -8,7 +8,7 @@ export function useProducts(onlyActive = true) {
   return useQuery({
     queryKey: ["products", onlyActive],
     queryFn: async () => {
-      let query = supabase.from("products").select("*").order("created_at", { ascending: true });
+      let query = supabase.from("products").select("*").order("sort_order", { ascending: true }).order("created_at", { ascending: true });
       if (onlyActive) {
         query = query.eq("active", true);
       }
