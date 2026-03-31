@@ -19,33 +19,48 @@ export type Database = {
           active: boolean
           created_at: string
           description: string
+          has_periods: boolean
           icon: string
           id: string
           name: string
           original_price: number | null
+          original_price_12m: number | null
+          original_price_24m: number | null
           price: number
+          price_12m: number | null
+          price_24m: number | null
           updated_at: string
         }
         Insert: {
           active?: boolean
           created_at?: string
           description: string
+          has_periods?: boolean
           icon?: string
           id?: string
           name: string
           original_price?: number | null
+          original_price_12m?: number | null
+          original_price_24m?: number | null
           price: number
+          price_12m?: number | null
+          price_24m?: number | null
           updated_at?: string
         }
         Update: {
           active?: boolean
           created_at?: string
           description?: string
+          has_periods?: boolean
           icon?: string
           id?: string
           name?: string
           original_price?: number | null
+          original_price_12m?: number | null
+          original_price_24m?: number | null
           price?: number
+          price_12m?: number | null
+          price_24m?: number | null
           updated_at?: string
         }
         Relationships: []
