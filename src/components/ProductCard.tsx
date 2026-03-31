@@ -25,7 +25,7 @@ export default function ProductCard({ product, whatsappNumber, productMessage }:
     : product.original_price;
 
   return (
-    <div className="group relative rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-[var(--shadow-glow)]">
+    <div className="group relative rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-[var(--shadow-glow)] flex flex-col h-full">
       <div className="mb-4 inline-flex rounded-xl p-3" style={{ background: "var(--gradient-primary)" }}>
         <Icon className="h-6 w-6 text-primary-foreground" />
       </div>
@@ -57,7 +57,7 @@ export default function ProductCard({ product, whatsappNumber, productMessage }:
         </div>
       )}
 
-      <ul className="space-y-2 mb-6">
+      <ul className="space-y-2 mb-6 flex-1">
         {benefits.map((b, i) => (
           <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
             <Check className="h-4 w-4 mt-0.5 shrink-0 text-secondary" />
@@ -66,7 +66,7 @@ export default function ProductCard({ product, whatsappNumber, productMessage }:
         ))}
       </ul>
 
-      <div className="mb-4">
+      <div className="mb-4 mt-auto">
         <span className="text-sm text-muted-foreground">A partir de</span>
         {currentOriginalPrice && currentOriginalPrice > currentPrice ? (
           <p className="text-lg text-muted-foreground line-through">
