@@ -4,9 +4,13 @@ import { generateGenericWhatsAppLink } from "@/lib/whatsapp";
 interface FooterProps {
   whatsappNumber: string;
   genericMessage: string;
+  phoneDisplay?: string;
+  email?: string;
+  location?: string;
+  cnpj?: string;
 }
 
-export default function Footer({ whatsappNumber, genericMessage }: FooterProps) {
+export default function Footer({ whatsappNumber, genericMessage, phoneDisplay, email, location, cnpj }: FooterProps) {
   return (
     <footer id="contato" className="border-t border-border bg-muted/20 py-16">
       <div className="container mx-auto px-4">
