@@ -202,6 +202,7 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
     const data = {
       name: form.name,
       description: form.description,
+      original_price: form.original_price ? parseFloat(form.original_price) : null,
       price: parseFloat(form.price),
       icon: form.icon,
       active: form.active,
