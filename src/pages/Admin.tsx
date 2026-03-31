@@ -194,6 +194,11 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
     price: product?.price?.toString() || "",
     icon: product?.icon || "shield",
     active: product?.active ?? true,
+    has_periods: product?.has_periods ?? false,
+    price_12m: product?.price_12m?.toString() || "",
+    original_price_12m: product?.original_price_12m?.toString() || "",
+    price_24m: product?.price_24m?.toString() || "",
+    original_price_24m: product?.original_price_24m?.toString() || "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
