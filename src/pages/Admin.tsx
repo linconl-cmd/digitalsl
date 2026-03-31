@@ -82,6 +82,7 @@ function AdminDashboard() {
   const queryClient = useQueryClient();
   const [editing, setEditing] = useState<Product | null>(null);
   const [creating, setCreating] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
