@@ -194,6 +194,11 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
     price: product?.price?.toString() || "",
     icon: product?.icon || "shield",
     active: product?.active ?? true,
+    has_periods: product?.has_periods ?? false,
+    price_12m: product?.price_12m?.toString() || "",
+    original_price_12m: product?.original_price_12m?.toString() || "",
+    price_24m: product?.price_24m?.toString() || "",
+    original_price_24m: product?.original_price_24m?.toString() || "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -206,6 +211,11 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
       price: parseFloat(form.price),
       icon: form.icon,
       active: form.active,
+      has_periods: form.has_periods,
+      price_12m: form.price_12m ? parseFloat(form.price_12m) : null,
+      original_price_12m: form.original_price_12m ? parseFloat(form.original_price_12m) : null,
+      price_24m: form.price_24m ? parseFloat(form.price_24m) : null,
+      original_price_24m: form.original_price_24m ? parseFloat(form.original_price_24m) : null,
     };
 
     const { error } = product
@@ -266,6 +276,33 @@ function ProductForm({ product, onClose }: { product: Product | null; onClose: (
               </SelectContent>
             </Select>
           </div>
+          <div className="flex items-center gap-3">
+            <Switch checked={form.has_periods} onCheckedChange={(v) => setForm({ ...form, has_periods: v })} />
+            <Label>Opções de 12/24 meses</Label>
+          </div>
+          {form.has_periods && (
+            <div className="space-y-4 rounded-xl border border-border p-4">
+              <p className="text-sm font-semibold text-foreground">Preços por Período</p>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label>Original 12m (R$)</Label>
+                  <Input type="number" step="0.01" value={form.original_price_12m} onChange={(e) => setForm({ ...form, original_price_12m: e.target.value })} className="mt-1" placeholder="Opcional" />
+                </div>
+                <div>
+                  <Label>Desconto 12m (R$)</Label>
+                  <Input type="number" step="0.01" value={form.price_12m} onChange={(e) => setForm({ ...form, price_12m: e.target.value })} className="mt-1" required />
+                </div>
+                <div>
+                  <Label>Original 24m (R$)</Label>
+                  <Input type="number" step="0.01" value={form.original_price_24m} onChange={(e) => setForm({ ...form, original_price_24m: e.target.value })} className="mt-1" placeholder="Opcional" />
+                </div>
+                <div>
+                  <Label>Desconto 24m (R$)</Label>
+                  <Input type="number" step="0.01" value={form.price_24m} onChange={(e) => setForm({ ...form, price_24m: e.target.value })} className="mt-1" required />
+                </div>
+              </div>
+            </div>
+          )}
           <div className="flex items-center gap-3">
             <Switch checked={form.active} onCheckedChange={(v) => setForm({ ...form, active: v })} />
             <Label>Produto ativo</Label>
