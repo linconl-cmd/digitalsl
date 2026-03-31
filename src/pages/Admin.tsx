@@ -9,7 +9,8 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { iconMap, iconOptions } from "@/lib/icons";
-import { Pencil, Trash2, Plus, LogOut, ArrowLeft, Loader2 } from "lucide-react";
+import { Pencil, Trash2, Plus, LogOut, ArrowLeft, Loader2, Settings } from "lucide-react";
+import SettingsForm from "@/components/admin/SettingsForm";
 import { toast } from "sonner";
 
 export default function Admin() {
