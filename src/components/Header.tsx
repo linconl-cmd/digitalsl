@@ -5,8 +5,11 @@ import { generateGenericWhatsAppLink } from "@/lib/whatsapp";
 
 const navItems = [
   { label: "Início", href: "#inicio" },
-  { label: "Produtos", href: "#produtos" },
-  { label: "Como Funciona", href: "#como-funciona" },
+  { label: "Certificados", href: "#produtos" },
+  { label: "Serviços", href: "#servicos" },
+  { label: "Downloads", href: "#downloads" },
+  { label: "Software", href: "#software" },
+  { label: "Parceiros", href: "#parceiros" },
   { label: "Contato", href: "#contato" },
 ];
 
