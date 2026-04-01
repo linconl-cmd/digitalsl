@@ -1,7 +1,11 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ProductsSection from "@/components/ProductsSection";
+import ServicesSection from "@/components/ServicesSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
+import DownloadsSection from "@/components/DownloadsSection";
+import SoftwareSection from "@/components/SoftwareSection";
+import PartnersSection from "@/components/PartnersSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import { useSettings } from "@/hooks/useSettings";
@@ -23,7 +27,11 @@ const Index = () => {
       <Header whatsappNumber={whatsappNumber} genericMessage={genericMessage} />
       <HeroSection title={heroTitle} subtitle={heroSubtitle} />
       <ProductsSection whatsappNumber={whatsappNumber} productMessage={productMessage} />
+      <ServicesSection />
       <HowItWorksSection />
+      <DownloadsSection />
+      <SoftwareSection whatsappNumber={whatsappNumber} />
+      <PartnersSection whatsappNumber={whatsappNumber} genericMessage={genericMessage} />
       <TestimonialsSection />
       <Footer whatsappNumber={whatsappNumber} genericMessage={genericMessage} phoneDisplay={phoneDisplay} email={footerEmail} location={footerLocation} cnpj={footerCnpj} />
     </div>
