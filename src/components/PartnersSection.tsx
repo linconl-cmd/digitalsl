@@ -39,7 +39,7 @@ export default function PartnersSection({ whatsappNumber, genericMessage }: Part
           </span>
           <h2
             id="parceiros-heading"
-            className="text-3xl md:text-5xl font-black mt-2 mb-4 text-foreground"
+            className="text-3xl md:text-4xl lg:text-5xl font-black mt-3 mb-5 text-foreground tracking-tight"
           >
             Contadores, sejam nossos{" "}
             <span className="gradient-text">parceiros</span>

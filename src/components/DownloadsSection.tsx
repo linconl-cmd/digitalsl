@@ -35,7 +35,7 @@ export default function DownloadsSection() {
           </span>
           <h2
             id="downloads-heading"
-            className="text-3xl md:text-5xl font-black mt-2 mb-4 text-foreground"
+            className="text-3xl md:text-4xl lg:text-5xl font-black mt-3 mb-5 text-foreground tracking-tight"
           >
             Drivers e <span className="gradient-text">softwares</span>
           </h2>

@@ -30,7 +30,7 @@ export default function HowItWorksSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <span className="text-sm font-semibold uppercase tracking-wider text-primary">Passo a Passo</span>
-          <h2 className="text-3xl md:text-5xl font-black mt-2 mb-4 text-foreground">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mt-3 mb-5 text-foreground tracking-tight">
             Como <span className="gradient-text">funciona?</span>
           </h2>
         </div>

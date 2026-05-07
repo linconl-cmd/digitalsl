@@ -24,7 +24,7 @@ export default function TestimonialsSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm font-semibold uppercase tracking-wider text-primary">Depoimentos</span>
-          <h2 className="text-3xl md:text-5xl font-black mt-2 mb-4 text-foreground">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mt-3 mb-5 text-foreground tracking-tight">
             O que nossos <span className="gradient-text">clientes dizem</span>
           </h2>
         </div>
