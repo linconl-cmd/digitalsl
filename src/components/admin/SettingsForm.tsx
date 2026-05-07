@@ -47,6 +47,30 @@ const SETTING_LABELS: Record<string, { label: string; description: string; multi
     label: "CNPJ (Rodapé)",
     description: "CNPJ exibido no rodapé do site.",
   },
+  gtm_container_id: {
+    label: "Google Tag Manager — ID do Container",
+    description: "Formato: GTM-XXXXXXX. Centraliza o gerenciamento de todas as tags (recomendado).",
+  },
+  ga4_measurement_id: {
+    label: "Google Analytics 4 — Measurement ID",
+    description: "Formato: G-XXXXXXXXXX. Necessário para métricas de tráfego e comportamento.",
+  },
+  google_ads_conversion_id: {
+    label: "Google Ads — ID de Conversão",
+    description: "Formato: AW-XXXXXXXXX. Usado para remarketing e rastreamento de campanhas pagas.",
+  },
+  google_ads_conversion_label: {
+    label: "Google Ads — Label de Conversão (compra)",
+    description: "Label que dispara quando o cliente clica em 'Comprar via WhatsApp'. Ex: AbC-D_efGhIj1k2L.",
+  },
+  search_console_verification: {
+    label: "Google Search Console — Código de Verificação",
+    description: "Cole apenas o valor do atributo content da meta tag fornecida pelo Search Console.",
+  },
+  google_site_verification_meta: {
+    label: "Verificação Adicional (Google)",
+    description: "Opcional: outro código de verificação google-site-verification (ex: Merchant Center).",
+  },
 };
 
 const SETTING_ORDER = [
@@ -59,6 +83,12 @@ const SETTING_ORDER = [
   "footer_email",
   "footer_location",
   "footer_cnpj",
+  "gtm_container_id",
+  "ga4_measurement_id",
+  "google_ads_conversion_id",
+  "google_ads_conversion_label",
+  "search_console_verification",
+  "google_site_verification_meta",
 ];
 
 export default function SettingsForm({ onClose }: { onClose: () => void }) {
