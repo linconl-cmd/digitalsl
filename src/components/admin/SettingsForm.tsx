@@ -47,6 +47,30 @@ const SETTING_LABELS: Record<string, { label: string; description: string; multi
     label: "CNPJ (Rodapé)",
     description: "CNPJ exibido no rodapé do site.",
   },
+  gtm_container_id: {
+    label: "Google Tag Manager — ID do Container",
+    description: "Formato: GTM-XXXXXXX. Centraliza o gerenciamento de todas as tags (recomendado).",
+  },
+  ga4_measurement_id: {
+    label: "Google Analytics 4 — Measurement ID",
+    description: "Formato: G-XXXXXXXXXX. Necessário para métricas de tráfego e comportamento.",
+  },
+  google_ads_conversion_id: {
+    label: "Google Ads — ID de Conversão",
+    description: "Formato: AW-XXXXXXXXX. Usado para remarketing e rastreamento de campanhas pagas.",
+  },
+  google_ads_conversion_label: {
+    label: "Google Ads — Label de Conversão (compra)",
+    description: "Label que dispara quando o cliente clica em 'Comprar via WhatsApp'. Ex: AbC-D_efGhIj1k2L.",
+  },
+  search_console_verification: {
+    label: "Google Search Console — Código de Verificação",
+    description: "Cole apenas o valor do atributo content da meta tag fornecida pelo Search Console.",
+  },
+  google_site_verification_meta: {
+    label: "Verificação Adicional (Google)",
+    description: "Opcional: outro código de verificação google-site-verification (ex: Merchant Center).",
+  },
 };
 
 const SETTING_ORDER = [
@@ -59,6 +83,12 @@ const SETTING_ORDER = [
   "footer_email",
   "footer_location",
   "footer_cnpj",
+  "gtm_container_id",
+  "ga4_measurement_id",
+  "google_ads_conversion_id",
+  "google_ads_conversion_label",
+  "search_console_verification",
+  "google_site_verification_meta",
 ];
 
 export default function SettingsForm({ onClose }: { onClose: () => void }) {
@@ -105,11 +135,20 @@ export default function SettingsForm({ onClose }: { onClose: () => void }) {
         </Button>
         <h1 className="text-2xl font-bold text-foreground mb-6">Configurações do Site</h1>
         <div className="space-y-5">
-          {SETTING_ORDER.map((key) => {
+          {SETTING_ORDER.map((key, idx) => {
             const meta = SETTING_LABELS[key];
             if (!meta) return null;
+            const isFirstIntegration = key === "gtm_container_id";
             return (
               <div key={key}>
+                {isFirstIntegration && (
+                  <div className="mt-8 mb-4 border-t border-border pt-6">
+                    <h2 className="text-lg font-semibold text-foreground">Integrações Google</h2>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Configure as IDs para habilitar Analytics, remarketing e rastreamento de conversões de tráfego pago.
+                    </p>
+                  </div>
+                )}
                 <Label>{meta.label}</Label>
                 <p className="text-xs text-muted-foreground mb-1">{meta.description}</p>
                 {meta.multiline ? (

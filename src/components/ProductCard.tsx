@@ -3,6 +3,8 @@ import { MessageCircle, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { iconMap } from "@/lib/icons";
 import { generateWhatsAppLink } from "@/lib/whatsapp";
+import { trackAdsConversion } from "@/components/AnalyticsTags";
+import { useSettings } from "@/hooks/useSettings";
 import type { Product } from "@/hooks/useProducts";
 
 interface ProductCardProps {
@@ -12,6 +14,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, whatsappNumber, productMessage }: ProductCardProps) {
+  const { data: settings } = useSettings();
   const Icon = iconMap[product.icon] || iconMap.shield;
   const benefits = product.description.split("|");
   const [period, setPeriod] = useState<"12" | "24">("12");
@@ -78,7 +81,32 @@ export default function ProductCard({ product, whatsappNumber, productMessage }:
         </p>
       </div>
 
-      <a href={generateWhatsAppLink(whatsappNumber, productMessage, product.name, currentPrice)} target="_blank" rel="noopener noreferrer">
+      <a
+        href={generateWhatsAppLink(whatsappNumber, productMessage, product.name, currentPrice)}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => {
+          const adsId = settings?.google_ads_conversion_id?.trim();
+          const label = settings?.google_ads_conversion_label?.trim();
+          if (adsId && label) {
+            trackAdsConversion(adsId, label, {
+              value: currentPrice,
+              currency: "BRL",
+              transaction_id: `${product.id}-${Date.now()}`,
+            });
+          }
+          // GA4 generic event
+          // @ts-expect-error gtag injected at runtime
+          if (typeof window !== "undefined" && typeof window.gtag === "function") {
+            // @ts-expect-error gtag injected at runtime
+            window.gtag("event", "whatsapp_purchase_click", {
+              product_name: product.name,
+              value: currentPrice,
+              currency: "BRL",
+            });
+          }
+        }}
+      >
         <Button className="w-full gap-2 bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] text-primary-foreground font-semibold">
           <MessageCircle className="h-4 w-4" />
           Comprar via WhatsApp

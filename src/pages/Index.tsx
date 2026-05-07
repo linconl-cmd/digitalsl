@@ -8,6 +8,7 @@ import SoftwareSection from "@/components/SoftwareSection";
 import PartnersSection from "@/components/PartnersSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
+import AnalyticsTags from "@/components/AnalyticsTags";
 import { useSettings } from "@/hooks/useSettings";
 
 const Index = () => {
@@ -24,6 +25,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <AnalyticsTags />
       <Header whatsappNumber={whatsappNumber} genericMessage={genericMessage} />
       <HeroSection title={heroTitle} subtitle={heroSubtitle} />
       <ProductsSection whatsappNumber={whatsappNumber} productMessage={productMessage} />
