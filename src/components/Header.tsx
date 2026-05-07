@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { generateGenericWhatsAppLink } from "@/lib/whatsapp";
 
 const navItems = [
@@ -38,7 +39,8 @@ export default function Header({ whatsappNumber, genericMessage }: HeaderProps) 
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
           <a href={link} target="_blank" rel="noopener noreferrer">
             <Button className="bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] text-primary-foreground gap-2">
               <MessageCircle className="h-4 w-4" /> Fale Conosco
@@ -46,9 +48,12 @@ export default function Header({ whatsappNumber, genericMessage }: HeaderProps) 
           </a>
         </div>
 
-        <button className="md:hidden text-foreground" onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeToggle />
+          <button className="text-foreground" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </div>
 
       {menuOpen && (
