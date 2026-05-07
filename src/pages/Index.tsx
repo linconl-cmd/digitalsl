@@ -25,6 +25,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <AnalyticsTags />
       <Header whatsappNumber={whatsappNumber} genericMessage={genericMessage} />
       <HeroSection title={heroTitle} subtitle={heroSubtitle} />
       <ProductsSection whatsappNumber={whatsappNumber} productMessage={productMessage} />
