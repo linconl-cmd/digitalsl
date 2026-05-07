@@ -8,6 +8,7 @@ import SoftwareSection from "@/components/SoftwareSection";
 import PartnersSection from "@/components/PartnersSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
+import AnalyticsTags from "@/components/AnalyticsTags";
 import { useSettings } from "@/hooks/useSettings";
 
 const Index = () => {
