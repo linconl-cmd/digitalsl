@@ -37,7 +37,7 @@ export default function ServicesSection() {
           >
             Suporte <span className="gradient-text">especializado</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto text-[15px] leading-relaxed">
             Oferecemos suporte remoto completo para instalação de certificados e manutenção de software.
           </p>
         </div>
@@ -55,8 +55,8 @@ export default function ServicesSection() {
                 >
                   <service.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-2">{service.title}</h3>
-                <p className="text-sm text-muted-foreground">{service.description}</p>
+                <h3 className="text-base font-semibold tracking-tight text-foreground mb-2 leading-snug">{service.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
               </CardContent>
             </Card>
           ))}

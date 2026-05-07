@@ -42,8 +42,8 @@ export default function HowItWorksSection() {
                 <step.icon className="h-7 w-7 text-primary-foreground" />
               </div>
               <div className="mb-2 text-xs font-bold text-primary">PASSO {i + 1}</div>
-              <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
-              <p className="text-sm text-muted-foreground">{step.description}</p>
+              <h3 className="text-base font-semibold tracking-tight text-foreground mb-2 leading-snug">{step.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
             </div>
           ))}
         </div>

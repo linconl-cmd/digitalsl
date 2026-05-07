@@ -39,7 +39,7 @@ export default function DownloadsSection() {
           >
             Drivers e <span className="gradient-text">softwares</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto text-[15px] leading-relaxed">
             Baixe os drivers necessários para o funcionamento do seu certificado digital.
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function DownloadsSection() {
                   >
                     <Download className="h-5 w-5 text-primary-foreground" />
                   </div>
-                  <h3 className="text-base font-bold text-foreground">{driver.name}</h3>
+                  <h3 className="text-base font-semibold tracking-tight text-foreground leading-snug">{driver.name}</h3>
                 </div>
                 <p className="text-sm text-muted-foreground mb-4 flex-1">{driver.description}</p>
                 <a href={driver.url} target="_blank" rel="noopener noreferrer">
