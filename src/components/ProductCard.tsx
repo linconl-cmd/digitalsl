@@ -3,6 +3,8 @@ import { MessageCircle, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { iconMap } from "@/lib/icons";
 import { generateWhatsAppLink } from "@/lib/whatsapp";
+import { trackAdsConversion } from "@/components/AnalyticsTags";
+import { useSettings } from "@/hooks/useSettings";
 import type { Product } from "@/hooks/useProducts";
 
 interface ProductCardProps {
@@ -12,6 +14,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, whatsappNumber, productMessage }: ProductCardProps) {
+  const { data: settings } = useSettings();
   const Icon = iconMap[product.icon] || iconMap.shield;
   const benefits = product.description.split("|");
   const [period, setPeriod] = useState<"12" | "24">("12");
