@@ -30,7 +30,7 @@ export default function ProductCard({ product, whatsappNumber, productMessage }:
         <Icon className="h-6 w-6 text-primary-foreground" />
       </div>
 
-      <h3 className="text-xl font-bold text-foreground mb-3">{product.name}</h3>
+      <h3 className="text-lg font-semibold tracking-tight text-foreground mb-3 leading-snug">{product.name}</h3>
 
       {product.has_periods && (
         <div className="flex gap-2 mb-4">
@@ -59,21 +59,21 @@ export default function ProductCard({ product, whatsappNumber, productMessage }:
 
       <ul className="space-y-2 mb-6 flex-1">
         {benefits.map((b, i) => (
-          <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+          <li key={i} className="flex items-start gap-2 text-[13px] leading-relaxed text-muted-foreground">
             <Check className="h-4 w-4 mt-0.5 shrink-0 text-secondary" />
             {b.trim()}
           </li>
         ))}
       </ul>
 
-      <div className="mb-4 mt-auto">
-        <span className="text-sm text-muted-foreground">A partir de</span>
+      <div className="mb-5 mt-auto">
+        <span className="text-xs uppercase tracking-wider text-muted-foreground">A partir de</span>
         {currentOriginalPrice && currentOriginalPrice > currentPrice ? (
-          <p className="text-lg text-muted-foreground line-through">
+          <p className="text-sm text-muted-foreground line-through leading-tight mt-1">
             R$ {currentOriginalPrice.toFixed(2).replace(".", ",")}
           </p>
         ) : null}
-        <p className="text-3xl font-black gradient-text">
+        <p className="text-3xl font-black gradient-text leading-none mt-1">
           R$ {currentPrice.toFixed(2).replace(".", ",")}
         </p>
       </div>

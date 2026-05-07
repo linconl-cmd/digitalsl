@@ -31,16 +31,16 @@ export default function TestimonialsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
-            <div key={i} className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
-              <div className="flex gap-1 mb-4">
+            <div key={i} className="rounded-2xl border border-border bg-card p-7 shadow-[var(--shadow-card)]">
+              <div className="flex gap-1 mb-5">
                 {Array.from({ length: 5 }).map((_, j) => (
                   <Star key={j} className="h-4 w-4 fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-muted-foreground mb-6 text-sm leading-relaxed">"{t.text}"</p>
+              <p className="text-foreground/80 mb-6 text-[15px] leading-relaxed">"{t.text}"</p>
               <div>
-                <p className="font-semibold text-foreground">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
+                <p className="font-semibold text-foreground text-sm">{t.name}</p>
+                <p className="text-xs text-muted-foreground mt-0.5">{t.role}</p>
               </div>
             </div>
           ))}
