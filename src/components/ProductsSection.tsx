@@ -15,7 +15,7 @@ export default function ProductsSection({ whatsappNumber, productMessage }: Prod
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-sm font-semibold uppercase tracking-wider text-primary">Nossos Certificados</span>
-          <h2 className="text-3xl md:text-5xl font-black mt-2 mb-4 text-foreground">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mt-3 mb-5 text-foreground tracking-tight">
             Escolha o <span className="gradient-text">certificado ideal</span> para você
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">

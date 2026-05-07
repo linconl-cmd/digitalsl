@@ -39,12 +39,12 @@ export default function PartnersSection({ whatsappNumber, genericMessage }: Part
           </span>
           <h2
             id="parceiros-heading"
-            className="text-3xl md:text-5xl font-black mt-2 mb-4 text-foreground"
+            className="text-3xl md:text-4xl lg:text-5xl font-black mt-3 mb-5 text-foreground tracking-tight"
           >
             Contadores, sejam nossos{" "}
             <span className="gradient-text">parceiros</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto text-[15px] leading-relaxed">
             Escritórios de contabilidade podem oferecer certificação digital aos seus clientes
             e gerar receita extra com nosso programa de parceiros.
           </p>
@@ -59,8 +59,8 @@ export default function PartnersSection({ whatsappNumber, genericMessage }: Part
               >
                 <b.icon className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-bold text-foreground mb-2">{b.title}</h3>
-              <p className="text-sm text-muted-foreground">{b.description}</p>
+              <h3 className="text-base font-semibold tracking-tight text-foreground mb-2 leading-snug">{b.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{b.description}</p>
             </div>
           ))}
         </div>

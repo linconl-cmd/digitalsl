@@ -30,7 +30,7 @@ export default function HowItWorksSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <span className="text-sm font-semibold uppercase tracking-wider text-primary">Passo a Passo</span>
-          <h2 className="text-3xl md:text-5xl font-black mt-2 mb-4 text-foreground">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mt-3 mb-5 text-foreground tracking-tight">
             Como <span className="gradient-text">funciona?</span>
           </h2>
         </div>
@@ -42,8 +42,8 @@ export default function HowItWorksSection() {
                 <step.icon className="h-7 w-7 text-primary-foreground" />
               </div>
               <div className="mb-2 text-xs font-bold text-primary">PASSO {i + 1}</div>
-              <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
-              <p className="text-sm text-muted-foreground">{step.description}</p>
+              <h3 className="text-base font-semibold tracking-tight text-foreground mb-2 leading-snug">{step.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
             </div>
           ))}
         </div>

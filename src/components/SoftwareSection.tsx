@@ -43,11 +43,11 @@ export default function SoftwareSection({ whatsappNumber }: SoftwareSectionProps
           </span>
           <h2
             id="software-heading"
-            className="text-3xl md:text-5xl font-black mt-2 mb-4 text-foreground"
+            className="text-3xl md:text-4xl lg:text-5xl font-black mt-3 mb-5 text-foreground tracking-tight"
           >
             Soluções <span className="gradient-text">Zucchetti</span>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
+          <p className="text-muted-foreground max-w-xl mx-auto text-[15px] leading-relaxed">
             Somos revendedores autorizados do software de gestão empresarial Zucchetti — uma
             plataforma completa para empresas de todos os portes.
           </p>
@@ -62,8 +62,8 @@ export default function SoftwareSection({ whatsappNumber }: SoftwareSectionProps
               >
                 <f.icon className="h-6 w-6 text-primary-foreground" />
               </div>
-              <h3 className="text-lg font-bold text-foreground mb-2">{f.title}</h3>
-              <p className="text-sm text-muted-foreground">{f.description}</p>
+              <h3 className="text-base font-semibold tracking-tight text-foreground mb-2 leading-snug">{f.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{f.description}</p>
             </div>
           ))}
         </div>
