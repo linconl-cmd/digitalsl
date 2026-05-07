@@ -111,7 +111,21 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
+
+  /* Light mode typography — clean, airy, high readability */
+  :root:not(.dark) h1,
+  :root:not(.dark) h2,
+  :root:not(.dark) h3,
+  :root:not(.dark) h4 {
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  :root:not(.dark) h1 { line-height: 1.08; }
+  :root:not(.dark) p { line-height: 1.7; }
 }
 
 @layer utilities {
