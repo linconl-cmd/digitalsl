@@ -135,11 +135,20 @@ export default function SettingsForm({ onClose }: { onClose: () => void }) {
         </Button>
         <h1 className="text-2xl font-bold text-foreground mb-6">Configurações do Site</h1>
         <div className="space-y-5">
-          {SETTING_ORDER.map((key) => {
+          {SETTING_ORDER.map((key, idx) => {
             const meta = SETTING_LABELS[key];
             if (!meta) return null;
+            const isFirstIntegration = key === "gtm_container_id";
             return (
               <div key={key}>
+                {isFirstIntegration && (
+                  <div className="mt-8 mb-4 border-t border-border pt-6">
+                    <h2 className="text-lg font-semibold text-foreground">Integrações Google</h2>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Configure as IDs para habilitar Analytics, remarketing e rastreamento de conversões de tráfego pago.
+                    </p>
+                  </div>
+                )}
                 <Label>{meta.label}</Label>
                 <p className="text-xs text-muted-foreground mb-1">{meta.description}</p>
                 {meta.multiline ? (
