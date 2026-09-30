@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { MessageCircle, Check } from "lucide-react";
+import { MessageCircle, Check, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { iconMap } from "@/lib/icons";
 import { generateWhatsAppLink } from "@/lib/whatsapp";
 import { trackAdsConversion } from "@/components/AnalyticsTags";
@@ -81,37 +82,59 @@ export default function ProductCard({ product, whatsappNumber, productMessage }:
         </p>
       </div>
 
-      <a
-        href={generateWhatsAppLink(whatsappNumber, productMessage, product.name, currentPrice)}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={() => {
-          const adsId = settings?.google_ads_conversion_id?.trim();
-          const label = settings?.google_ads_conversion_label?.trim();
-          if (adsId && label) {
-            trackAdsConversion(adsId, label, {
-              value: currentPrice,
-              currency: "BRL",
-              transaction_id: `${product.id}-${Date.now()}`,
-            });
-          }
-          // GA4 generic event
-          // @ts-expect-error gtag injected at runtime
-          if (typeof window !== "undefined" && typeof window.gtag === "function") {
+      <div className="flex gap-2">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            {/* Pagamento online (Pix) ainda não está no ar — botão fica
+                desabilitado até o checkout ser publicado */}
+            <span className="flex-1">
+              <Button disabled className="w-full gap-2 font-semibold">
+                <ShoppingCart className="h-4 w-4" />
+                Comprar — em breve
+              </Button>
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Pagamento online chegando em breve. Por enquanto, compre pelo WhatsApp.</p>
+          </TooltipContent>
+        </Tooltip>
+
+        <a
+          href={generateWhatsAppLink(whatsappNumber, productMessage, product.name, currentPrice)}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Dúvidas ou comprar pelo WhatsApp"
+          onClick={() => {
+            const adsId = settings?.google_ads_conversion_id?.trim();
+            const label = settings?.google_ads_conversion_label?.trim();
+            if (adsId && label) {
+              trackAdsConversion(adsId, label, {
+                value: currentPrice,
+                currency: "BRL",
+                transaction_id: `${product.id}-${Date.now()}`,
+              });
+            }
+            // GA4 generic event
             // @ts-expect-error gtag injected at runtime
-            window.gtag("event", "whatsapp_purchase_click", {
-              product_name: product.name,
-              value: currentPrice,
-              currency: "BRL",
-            });
-          }
-        }}
-      >
-        <Button className="w-full gap-2 bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] text-primary-foreground font-semibold">
-          <MessageCircle className="h-4 w-4" />
-          Comprar via WhatsApp
-        </Button>
-      </a>
+            if (typeof window !== "undefined" && typeof window.gtag === "function") {
+              // @ts-expect-error gtag injected at runtime
+              window.gtag("event", "whatsapp_purchase_click", {
+                product_name: product.name,
+                value: currentPrice,
+                currency: "BRL",
+              });
+            }
+          }}
+        >
+          <Button
+            variant="outline"
+            className="gap-2 border-[hsl(142,70%,45%)] text-[hsl(142,70%,35%)] hover:bg-[hsl(142,70%,45%)] hover:text-primary-foreground font-semibold"
+          >
+            <MessageCircle className="h-4 w-4" />
+            <span className="hidden sm:inline">Dúvidas?</span>
+          </Button>
+        </a>
+      </div>
     </div>
   );
 }

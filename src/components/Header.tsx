@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Menu, X, MessageCircle, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { generateGenericWhatsAppLink } from "@/lib/whatsapp";
@@ -19,7 +20,10 @@ interface HeaderProps {
   genericMessage: string;
 }
 
-export default function Header({ whatsappNumber, genericMessage }: HeaderProps) {
+export default function Header({
+  whatsappNumber,
+  genericMessage,
+}: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const link = generateGenericWhatsAppLink(whatsappNumber, genericMessage);
 
@@ -27,13 +31,21 @@ export default function Header({ whatsappNumber, genericMessage }: HeaderProps) 
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="container mx-auto flex items-center justify-between px-4 py-4">
         <a href="#inicio" className="flex items-baseline gap-1">
-          <span className="text-xl font-black tracking-tight gradient-text">DIGITAL</span>
-          <span className="text-xl font-light tracking-widest text-muted-foreground">SOLUTIONS</span>
+          <span className="text-xl font-black tracking-tight gradient-text">
+            DIGITAL
+          </span>
+          <span className="text-xl font-light tracking-widest text-muted-foreground">
+            SOLUTIONS
+          </span>
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
               {item.label}
             </a>
           ))}
@@ -41,6 +53,16 @@ export default function Header({ whatsappNumber, genericMessage }: HeaderProps) 
 
         <div className="hidden md:flex items-center gap-2">
           <ThemeToggle />
+          <Link to="/admin">
+            <Button
+              variant="outline"
+              size="icon"
+              title="Login"
+              aria-label="Login"
+            >
+              <LogIn className="h-4 w-4" />
+            </Button>
+          </Link>
           <a href={link} target="_blank" rel="noopener noreferrer">
             <Button className="bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] text-primary-foreground gap-2">
               <MessageCircle className="h-4 w-4" /> Fale Conosco
@@ -50,8 +72,15 @@ export default function Header({ whatsappNumber, genericMessage }: HeaderProps) 
 
         <div className="md:hidden flex items-center gap-1">
           <ThemeToggle />
-          <button className="text-foreground" onClick={() => setMenuOpen(!menuOpen)}>
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <button
+            className="text-foreground"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
       </div>
@@ -59,10 +88,20 @@ export default function Header({ whatsappNumber, genericMessage }: HeaderProps) 
       {menuOpen && (
         <div className="md:hidden glass border-t border-border px-4 pb-4">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="block py-3 text-sm font-medium text-muted-foreground hover:text-foreground" onClick={() => setMenuOpen(false)}>
+            <a
+              key={item.href}
+              href={item.href}
+              className="block py-3 text-sm font-medium text-muted-foreground hover:text-foreground"
+              onClick={() => setMenuOpen(false)}
+            >
               {item.label}
             </a>
           ))}
+          <Link to="/admin" onClick={() => setMenuOpen(false)}>
+            <Button variant="outline" className="w-full mt-2 gap-2">
+              <LogIn className="h-4 w-4" /> Login
+            </Button>
+          </Link>
           <a href={link} target="_blank" rel="noopener noreferrer">
             <Button className="w-full mt-2 bg-[hsl(142,70%,45%)] hover:bg-[hsl(142,70%,40%)] text-primary-foreground gap-2">
               <MessageCircle className="h-4 w-4" /> Fale Conosco
