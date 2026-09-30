@@ -1,11 +1,16 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { catalogoEstatico } from "@/lib/catalogoEstatico";
 
 export type SiteSettings = Record<string, string>;
 
 export function useSettings() {
   return useQuery({
     queryKey: ["site_settings"],
+    // Mesma lógica do useProducts: semente do retrato do build, substituída
+    // pelos dados ao vivo quando o banco responder
+    initialData: catalogoEstatico.settings,
+    initialDataUpdatedAt: new Date(catalogoEstatico.geradoEm).getTime(),
     queryFn: async (): Promise<SiteSettings> => {
       const { data, error } = await supabase
         .from("site_settings")
