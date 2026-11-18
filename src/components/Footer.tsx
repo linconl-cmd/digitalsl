@@ -49,7 +49,7 @@ export default function Footer({ whatsappNumber, genericMessage, phoneDisplay, e
               <a href="#inicio" className="block hover:text-foreground transition-colors">Início</a>
               <a href="#produtos" className="block hover:text-foreground transition-colors">Certificados</a>
               <a href="#servicos" className="block hover:text-foreground transition-colors">Serviços</a>
-              <a href="#downloads" className="block hover:text-foreground transition-colors">Downloads</a>
+              <a href="/downloads" className="block hover:text-foreground transition-colors">Downloads</a>
               <a href="#software" className="block hover:text-foreground transition-colors">Software</a>
               <a href="#parceiros" className="block hover:text-foreground transition-colors">Parceiros</a>
             </div>

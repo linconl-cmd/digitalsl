@@ -9,7 +9,7 @@ const navItems = [
   { label: "Início", href: "#inicio" },
   { label: "Certificados", href: "#produtos" },
   { label: "Serviços", href: "#servicos" },
-  { label: "Downloads", href: "#downloads" },
+  { label: "Downloads", href: "/downloads" },
   { label: "Software", href: "#software" },
   { label: "Parceiros", href: "#parceiros" },
   { label: "Contato", href: "#contato" },
