@@ -22,10 +22,9 @@ const benefits = [
 
 interface PartnersSectionProps {
   whatsappNumber: string;
-  genericMessage: string;
 }
 
-export default function PartnersSection({ whatsappNumber, genericMessage }: PartnersSectionProps) {
+export default function PartnersSection({ whatsappNumber }: PartnersSectionProps) {
   const partnerMessage = "Olá Digital Solutions, sou contador(a) e gostaria de saber mais sobre o programa de parceiros.";
   const link = generateGenericWhatsAppLink(whatsappNumber, partnerMessage);
 

@@ -31,7 +31,7 @@ const Index = () => {
       <ServicesSection />
       <HowItWorksSection />
       <SoftwareSection whatsappNumber={whatsappNumber} />
-      <PartnersSection whatsappNumber={whatsappNumber} genericMessage={genericMessage} />
+      <PartnersSection whatsappNumber={whatsappNumber} />
       <TestimonialsSection />
       <Footer whatsappNumber={whatsappNumber} genericMessage={genericMessage} phoneDisplay={phoneDisplay} email={footerEmail} location={footerLocation} cnpj={footerCnpj} />
     </div>

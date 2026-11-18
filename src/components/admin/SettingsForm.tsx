@@ -135,7 +135,7 @@ export default function SettingsForm({ onClose }: { onClose: () => void }) {
         </Button>
         <h1 className="text-2xl font-bold text-foreground mb-6">Configurações do Site</h1>
         <div className="space-y-5">
-          {SETTING_ORDER.map((key, idx) => {
+          {SETTING_ORDER.map((key) => {
             const meta = SETTING_LABELS[key];
             if (!meta) return null;
             const isFirstIntegration = key === "gtm_container_id";
